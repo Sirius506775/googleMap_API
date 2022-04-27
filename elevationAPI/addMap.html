@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>우리들의 런닝코스 SYNC</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://www.google.com/jsapi"></script>
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <script type="module" src="./js/index.js"></script>
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a>러닝 코스</a></li>
+          <li><a>러닝크루 매칭</a></li>
+          <li><a class="click">나의 러닝일지</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="board">
+      <div class="middle"></div>
+      <div>
+        <h1 class="date">4월 27일</h1>
+      </div>
+      <div>
+        <h1 class="name"><small> No.27 </small>&nbsp; 종로구 청계천 코스</h1>
+      </div>
+      <div>
+        <h1 class="modify">수정</h1>
+      </div>
+      <div>
+        <h1 class="delete">삭제</h1>
+      </div>
+    </section>
+
+    <section>
+      <!-- 코스 맵 -->
+      <div class="course_map">
+        <h2>코스 맵</h2>
+        <div id="map"></div>
+      </div>
+      <!-- 고도 그래프 -->
+      <div class="elevation_graph">
+        <h2> 고도<small>&nbsp;<sub>(m)</sub></small></h2>
+        <div id="elevation_chart"></div>
+        <hr />
+        <dl type="1">
+          <li>
+            거리
+            <p>5.01 <small><sub>km</sub></small></p>
+          </li>
+          <li>
+            평균 페이스
+            <p>5:34 <small><sub>min/km</sub></small></p>
+          </li>
+          <li>
+            평균 속도
+            <p>12.8 <small><sub>km/h</sub></small></p>
+          </li>
+          <li>
+            총 시간
+            <p>23:34</p>
+          </li>
+        </dl>
+      </div>
+    </section>
+
+    <footer>
+      <p>Share Your Next Course</p>
+    </footer>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWCmaYMswUTwF_9vbM9_cDYKbwAui0HI0&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>
