@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .card{
+    box-sizing: border-box;
+    width: 500px;
+    margin: auto;
+    padding-top: 100px;
+    background: white;
+    text-align: center;
+    display: table;
+	position: relative;
+  }
+  .watch-body{
+    margin-bottom: 50px;
+    color: black;
+  }
+  .watch-body span{
+    color: black;
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 50px;
+  }
+
+</style>
+<body>
+  <div class="card">
+    <div class="watch-body"> 
+      <span class="postTestMin">00</span><!-- 분 --> 
+      <span>:</span> 
+      <span class="postTestSec">00</span><!--초--> 
+      <span>.</span> 
+      <span class="postTestMilisec">00</span><!--밀리초-->
+    </div>
+
+    <div>
+      <ul class="testRecordList"></ul><!--중간 기록할 리스트-->
+    </div>
+    <div> <button type="button" class="testStartBtn">START</button><!--시작/재시작/기록 버튼--> 
+      <button type="button" class="testStopBtn">STOP</button><!--스톱 버튼-->
+    </div>
+
+  </div>
+
+  <script>
+    let stTime = 0
+    let endTime = 0
+    let timerStart
+
+    let min
+    let sec
+    let milisec
+
+    const startBtn = document.querySelector('.testStartBtn')
+    const stopBtn = document.querySelector('.testStopBtn')
+    const recordList = document.querySelector('.testRecordList')
+
+    startBtn.addEventListener('click',
+        function () { // RECORD    
+          if (this.innerText == 'RECORD' && milisec) {
+            console.log(min, sec, milisec)
+            const li = document.createElement('li')
+            li.style.color = "black"
+            li.style.listStyle = 'none'
+            li.style.paddingLeft = '0'
+            li.innerText = min + ' : ' + sec + ' : ' + milisec
+            if (!recordList.firstChild) {
+              recordList.append(li)
+            } else {
+              recordList.insertBefore(li, recordList.firstChild)
+            }
+            return false
+          }
+
+          this.innerText = 'RECORD'
+
+          if (!stTime) {
+            stTime = Date.now() // 최초 START    
+          } 
+            else {
+              stopBtn.innerText = 'STOP'
+              stTime += (Date.now() - endTime) // RESTART    
+            }     
+              timerStart = setInterval(function () {
+                const nowTime = new Date(Date.now() - stTime)
+
+                min = addZero(nowTime.getMinutes())
+                sec = addZero(nowTime.getSeconds())
+                milisec = addZero(Math.floor(nowTime.getMilliseconds() / 10))
+
+                document.querySelector('.postTestMin').innerText = min
+                document.querySelector('.postTestSec').innerText = sec
+                document.querySelector('.postTestMilisec').innerText = milisec
+              }, 1)
+            }) 
+            
+            stopBtn.addEventListener('click', function () {
+            if (timerStart) {
+              clearInterval(timerStart) // STOP         
+              if (this.innerText == 'STOP') {
+                endTime = Date.now()
+                this.innerText = 'RESET'
+                startBtn.innerText = 'RESTART'
+              } else { // RESET            
+                stTime = 0
+                min = 0
+                sec = 0
+                milisec = 0
+                document.getElementById('postTestMin').innerText = '00'
+                document.getElementById('postTestSec').innerText = '00'
+                document.getElementById('postTestMilisec').innerText = '00'
+                startBtn.innerText = 'START'
+                this.innerText = 'STOP'
+                timerStart = null
+                recordList.innerHTML = ''
+              }
+            }
+          })
+
+          function addZero(num) {
+            return (num < 10 ? '0' + num : '' + num)
+          }
+  </script>
+</body>
+
+</html>

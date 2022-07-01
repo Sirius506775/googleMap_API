@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Location</title>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWCmaYMswUTwF_9vbM9_cDYKbwAui0HI0&callback=initMap&v=weekly"
+    defer></script>
+</head>
+<body>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+        const start = document.querySelector("#start")
+        const stop = document.querySelector("#stop")
+
+        const coordinates ={
+            lat : 0 ,
+            lng : 0
+        };
+
+        start.addEventListener("click",() => {
+            navigator.geolocation.watchPosition(
+                data => {
+                console.log(data)
+                coordinates.lat = data.coords.latitude
+                coordinates.lng = data.coords.latitude
+                
+                window.localStorage.setItem("coordinates", JSON.stringify(coordinates))
+                //좌표가 될 localStorage는 coordinates 객체이다.
+                //localStorage는 동기식 api이며, 배열과 같은 객체를 그대로 저장할 수 없기 때문에 JSON 문자열로 변환한다. 
+                console.log(window.localStorage.getItem("coordinates"))
+                
+                
+                // JSON.parse(window.localStorage.getItem("coordinates"))
+                
+                
+
+            },
+            (error)=> console.log(error),
+            {
+                enableHighAccuracy: true 
+                //높은 정확도의 위치 정보를 구할 것인지 true | false
+                //true일 시 스마트폰 환경에서 GPS에서 위치 정보를 사용하려고 한다. 
+                //high quality accuracy, but 배터리소비가 빠르다. 
+            })
+        })
+    </script>
+</body>
+</html>

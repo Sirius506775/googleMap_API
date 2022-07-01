@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWCmaYMswUTwF_9vbM9_cDYKbwAui0HI0&callback=initMap&v=weekly"
+        defer></script>
+         <!-- google API 로딩 후 실행 할 callback function이 initMap이다. -->
+</head>
+<body>
+
+    <div id="map"></div>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) { // GPS를 지원하면
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    console.log(position)
+                    // alert(position.coords.latitude + ' ' + position.coords.longitude);
+                }, function (error) {
+                    console.error(error);
+                }, {
+                    enableHighAccuracy: false, //배터리를 더 소모해서 더 정확한 위치를 찾음
+                    maximumAge: 0, //한 번 찾은 위치 정보를 해당 초만큼 캐싱 
+                    timeout: Infinity //주어진 초 안에 찾지 못하면 에러 발생
+                });
+            } else {
+                alert('GPS를 지원하지 않습니다');
+            }
+        }        
+        getLocation();
+
+        function initMap() {
+            const myLating = {
+                lat: 37.570429,
+                lng: 126.9852349
+            };
+
+            const defaultOptions = {
+                zoom: 15, //지도 확대 레벨
+                center: myLating, //지도의 중심이 될 위도, 경도
+                disableDefaultUI: true,
+                zoomControl: true
+            };
+            map = new google.maps.Map(document.getElementById('map'), defaultOptions);
+
+            // const markerImg = new google.maps.markerImg("./images/mymarker1_34.png")
+            const marker = new google.maps.Marker({
+                position: myLating,
+                map: map
+            }); //마커 객체 생성
+        }
+    </script>
+</body>
+
+</html>

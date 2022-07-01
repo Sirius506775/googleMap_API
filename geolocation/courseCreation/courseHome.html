@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>SYNC - Our course</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="http://106.241.252.54:8086/assets/img/favicon.png" rel="icon">
+    <link href="http://106.241.252.54:8086/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="http://106.241.252.54:8086/https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="http://106.241.252.54:8086/https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="http://106.241.252.54:8086/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://106.241.252.54:8086/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="http://106.241.252.54:8086/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="http://106.241.252.54:8086/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="http://106.241.252.54:8086/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="http://106.241.252.54:8086/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="http://106.241.252.54:8086/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="http://106.241.252.54:8086/assets/css/style.css" rel="stylesheet">
+    <link href="./button.css" rel="stylesheet">
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWCmaYMswUTwF_9vbM9_cDYKbwAui0HI0&callback=initMap&v=weekly"
+        async defer></script>
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+
+        /* 웹사이트 드래그 방지 css  */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none
+    }
+
+    #map {
+        position: relative;
+        /* left: 0px; */
+        height: 100vh;
+        width: 100vw;
+        margin: auto;
+    }
+
+    /* @media (max-width: 1199px)
+    #main{
+    padding: 0;
+    } */
+    #main {
+        margin-top: 0px;
+        padding: 0px;
+        overflow: hidden;
+    }
+
+    /* 구글 map api 로고 및 이용약관 제거 css  */
+    a[href^="http://maps.google.com/maps"] {
+        display: none !important
+    }
+
+    a[href^="https://maps.google.com/maps"] {
+        display: none !important
+    }
+
+    .gmnoprint a,
+    .gmnoprint span,
+    .gm-style-cc {
+        display: none;
+    }
+
+    .gmnoprint div {
+        background: none !important;
+    }
+
+    button {
+        background: #1AAB8A;
+        color: #fff;
+        border: none;
+        position: relative;
+        height: 60px;
+        font-size: 1.6em;
+        padding: 0 2em;
+        cursor: pointer;
+        transition: 800ms ease all;
+        outline: none;
+        border-radius: 30px 30px 30px 30px;
+        z-index: 1;
+    }
+</style>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="http://106.241.252.54:8086/index.html" class="logo d-flex align-items-center">
+                <img src="http://106.241.252.54:8086/assets/img/logo.png" alt="">
+                <span class="d-none d-lg-block">SYNC<sup> - Our course </sup></span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div><!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li><!-- End Search Icon-->
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+    </header><!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <style>
+                .profile .profile-card img {
+                    display: flex;
+                    max-width: 111px;
+                }
+            </style>
+            <div class="card profile">
+                <div class="profile card-body profile-card pt-4 d-flex flex-column align-items-center">
+                    <img src="http://106.241.252.54:8086/assets/img/dongheon-profile.jpg" alt="Profile"
+                        class="rounded-circle">
+                    <h2>이동헌</h2>
+                    <h3>경기 남양주시</h3>
+                </div>
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="http://106.241.252.54:8086/index.html">
+                    <i class="ri-run-line"></i>
+                    <span>러닝</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="http://106.241.252.54:8086/index.html">
+                    <i class="ri-list-check-2"></i>
+                    <span>피드</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="http://106.241.252.54:8086/index.html">
+                    <i class="ri-lungs-fill"></i>
+                    <span>활동</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="http://106.241.252.54:8086/index.html">
+                    <i class="ri-group-2-fill"></i>
+                    <span>크루</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+        </ul>
+
+    </aside>
+
+    <main id="main" class="main">
+
+        <section class="section profile">
+            <div class="row">
+                <style>
+                    .elevation_graph {
+                        width: 50%;
+                        height: 70%;
+                        float: left;
+
+                    }
+
+                    #elevation_chart {
+                        right: 0px;
+                        height: 25vh;
+                        width: 45vw;
+                        margin: auto;
+                    }
+                </style>
+                <div id="map">
+                    <div class="dot">
+                        <div class="centraldot"></div>
+                        <div class="wave"></div>
+                        <div class="wave2"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main><!-- End #main -->
+
+
+    <!-- Vendor JS Files -->
+    <script src="http://106.241.252.54:8086/assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="http://106.241.252.54:8086/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="http://106.241.252.54:8086/assets/vendor/chart.js/chart.min.js"></script>
+    <script src="http://106.241.252.54:8086/assets/vendor/echarts/echarts.min.js"></script>
+    <script src="http://106.241.252.54:8086/assets/vendor/quill/quill.min.js"></script>
+    <script src="http://106.241.252.54:8086/assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="http://106.241.252.54:8086/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="http://106.241.252.54:8086/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="http://106.241.252.54:8086/assets/js/main.js"></script>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) { // GPS를 지원하면
+                navigator.geolocation.getCurrentPosition(function (position) {
+
+                    const mylat = position.coords.latitude
+                    const mylng = position.coords.longitude
+
+                    console.log("현재 " + "위도: " + mylat + " | 경도: " + mylng)
+
+                    function initMap() {
+
+                        const path = [{
+                                lat: mylat,
+                                lng: mylng
+                            },
+                            {
+                                lat: 37.897468,
+                                lng: 127.733685
+                            },
+                            {
+                                lat: 37.898567,
+                                lng: 127.7281804
+                            },
+                            {
+                                lat: 37.8963654,
+                                lng: 127.7275674
+                            },
+                            {
+                                lat: 37.8938773,
+                                lng: 127.7270313
+                            },
+                        ];
+
+                        //map defaultoption
+                        const defaultOptions = {
+                            zoom: 15, //지도 확대 크기
+                            center: path[0], //가운데 위치
+                            mapTypeId: "roadmap", //기본 지도 유형 roadmap = normal, default 2D map
+                            disableDefaultUI: true,
+                            gestureHandling: "greedy",
+                            clickableIcons : false,
+                            
+
+
+                        };
+
+                        //map 객체 생성
+                        const map = new google.maps.Map(document.getElementById('map'), defaultOptions);
+
+                        // const markerIcon = "./images/Ripple.svg"
+                        //마커 객체 생성
+                        const marker = new google.maps.Marker({
+                            position: path[0],
+                            map: map,
+                            // icon: markerIcon,
+                            Animation: google.maps.Animation.BOUNCE,
+                            optimized: false
+
+
+                        });
+
+                        
+
+                        // //elevator 객체 생성
+                        // const elevator = new google.maps.ElevationService();
+
+                        // displayPathElevation(path, elevator, map);
+
+                        function CenterControl(controlDiv, map) {
+                            // Set CSS for the control border.
+                            const controlUI = document.createElement("div");
+
+                            controlUI.style.backgroundColor = "cornflowerblue";
+                            controlUI.style.border = "none";
+                            controlUI.style.borderRadius = "50%";
+                            controlUI.style.boxShadow = "3px 3px 10px rgba(0,0,0,.3)";
+                            controlUI.style.cursor = "pointer"; //마우스 커서가 올라갔을 때 모양 지정
+                            controlUI.style.marginTop = "85vh";
+                            controlUI.style.padding = "0 2em";
+                            controlUI.style.textAlign = "center";
+                            controlUI.style.position = "relative";
+                            controlUI.title = "Click to recenter the map";
+                            controlDiv.appendChild(controlUI);
+
+                            // Set CSS for the control interior.
+                            const controlText = document.createElement("div");
+
+                            controlText.style.color = "rgb(25,25,25)";
+                            controlText.style.fontFamily = "fantasy";
+                            controlText.style.fontSize = "30px";
+                            controlText.style.lineHeight = "11vh";
+                            controlText.style.paddingLeft = "5px";
+                            controlText.style.paddingRight = "5px";
+                            controlText.innerHTML = "Start";
+                            controlUI.appendChild(controlText);
+
+                            controlUI.addEventListener("click", () => {
+                                map.setCenter(path[0]);
+                            });
+                        }
+
+
+
+                        const centerControlDiv = document.createElement("div");
+
+
+                        CenterControl(centerControlDiv, map);
+                        map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+
+
+                    
+                    }
+
+                    initMap();
+
+                }, function (error) {
+                    console.error(error);
+                }, {
+                    enableHighAccuracy: false, //배터리를 더 소모해서 더 정확한 위치를 찾음
+                    maximumAge: 0, //한 번 찾은 위치 정보를 해당 초만큼 캐싱 
+                    timeout: Infinity //주어진 초 안에 찾지 못하면 에러 발생
+                });
+            } else {
+                alert('GPS를 지원하지 않습니다');
+            }
+        }
+
+        
+        getLocation()
+        // google.load("visualization", "1", {
+        //     packages: ["columnchart"]
+        // });
+    </script>
+
+</body>
+
+</html>
