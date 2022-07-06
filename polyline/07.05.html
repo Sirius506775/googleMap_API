@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        #map {
+            height: 100%;
+        }
+
+        html,
+        body {
+            height: 50vh;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- map 태그 -->
+    <div id="map"></div> 
+
+    <div>
+        <img width="600" src="https://maps.googleapis.com/maps/api/staticmap?center=Albany,+NY
+        &zoom=13&scale=1&size=600x300&maptype=roadmap
+        &format=png&visual_refresh=true
+        &key=AIzaSyCWCmaYMswUTwF_9vbM9_cDYKbwAui0HI0" alt="Google Map of Albany, NY">
+    </div>
+
+
+    <script> 
+        let map;
+        // define global array to store markers added
+        // let markersArray = [];
+        let latlngArray = []
+        let polyline = null
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: 37.570258946954056,
+                    lng: 126.98534849787593
+                },
+                zoom: 17,
+                mapTypeId: "roadmap", //기본 지도 유형  = normal, default 2D map
+                disableDefaultUI: true, //모든 기본 UI 버튼 비활성화
+                gestureHandling: "greedy", //모든 터치 제스처 및 스크롤 이벤트는 지도를 이동하거나 확대/축소 : "greedy"
+                keyboardShortCuts: true, //키보드 제어 비활성화
+                clickableIcons: false, //정보창 비활성화
+                mapId: '48cb216d9a8215f9' //map 스타일 적용을 위한 Key
+
+            });
+
+            map.addListener('click', function (e) {
+                // console.log(e.latLng);
+                addMarker(e.latLng);
+
+                // console.log(markersArray)
+                console.log(latlngArray)
+
+                drawPolyline()
+
+            });
+
+
+        }
+
+
+        // define function to add marker at given lat & lng
+        function addMarker(latLng) {
+            let marker = new google.maps.Marker({
+                map: map,
+                position: latLng,
+                title: 'marker',
+                draggable: true,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    strokeColor: "blue",
+                    scale: 6
+                }
+            });
+
+            let arr = {
+                lat: latLng.lat(),
+                lng: latLng.lng()
+            }
+
+            console.log(arr)
+            //store the marker object drawn on map in global array
+            // markersArray.push(marker);
+            latlngArray.push(arr)
+        }
+
+        function drawPolyline() {
+
+            // check if there is already polyline drawn on map
+            // remove the polyline from map before we draw new one
+            if (polyline !== null) { //기존에 그려진 폴리라인이 있으면 
+                polyline.setMap(null); //기존 폴리라인 제거
+            }
+
+
+            // draw new polyline at markers' position
+            polyline = new google.maps.Polyline({
+                map: map,
+                path: latlngArray,
+                strokeOpacity: 0.4,
+               
+            });
+        }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWCmaYMswUTwF_9vbM9_cDYKbwAui0HI0&callback=initMap&v=weekly">
+    </script>
+</body>
+
+</html>

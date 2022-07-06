@@ -229,7 +229,7 @@
 
     <!-- Template Main JS File -->
     <script src="http://106.241.252.54:8086/assets/js/main.js"></script>
-
+    <!-- 
     <script>
         function getLocation() {
             if (navigator.geolocation) { // GPS를 지원하면
@@ -299,38 +299,38 @@
 
                         // displayPathElevation(path, elevator, map);
 
-                        function CenterControl(controlDiv, map) {
-                            // Set CSS for the control border.
-                            const controlUI = document.createElement("div");
+                        // function CenterControl(controlDiv, map) {
+                        //     // Set CSS for the control border.
+                        //     const controlUI = document.createElement("div");
 
-                            controlUI.style.backgroundColor = "cornflowerblue";
-                            controlUI.style.border = "none";
-                            controlUI.style.borderRadius = "50%";
-                            controlUI.style.boxShadow = "3px 3px 10px rgba(0,0,0,.3)";
-                            controlUI.style.cursor = "pointer"; //마우스 커서가 올라갔을 때 모양 지정
-                            controlUI.style.marginTop = "85vh";
-                            controlUI.style.padding = "0 2em";
-                            controlUI.style.textAlign = "center";
-                            controlUI.style.position = "relative";
-                            controlUI.title = "Click to recenter the map";
-                            controlDiv.appendChild(controlUI);
+                        //     controlUI.style.backgroundColor = "cornflowerblue";
+                        //     controlUI.style.border = "none";
+                        //     controlUI.style.borderRadius = "50%";
+                        //     controlUI.style.boxShadow = "3px 3px 10px rgba(0,0,0,.3)";
+                        //     controlUI.style.cursor = "pointer"; //마우스 커서가 올라갔을 때 모양 지정
+                        //     controlUI.style.marginTop = "85vh";
+                        //     controlUI.style.padding = "0 2em";
+                        //     controlUI.style.textAlign = "center";
+                        //     controlUI.style.position = "relative";
+                        //     controlUI.title = "Click to recenter the map";
+                        //     controlDiv.appendChild(controlUI);
 
-                            // Set CSS for the control interior.
-                            const controlText = document.createElement("div");
+                        //     // Set CSS for the control interior.
+                        //     const controlText = document.createElement("div");
 
-                            controlText.style.color = "rgb(25,25,25)";
-                            controlText.style.fontFamily = "fantasy";
-                            controlText.style.fontSize = "30px";
-                            controlText.style.lineHeight = "11vh";
-                            controlText.style.paddingLeft = "5px";
-                            controlText.style.paddingRight = "5px";
-                            controlText.innerHTML = "Start";
-                            controlUI.appendChild(controlText);
+                        //     controlText.style.color = "rgb(25,25,25)";
+                        //     controlText.style.fontFamily = "fantasy";
+                        //     controlText.style.fontSize = "30px";
+                        //     controlText.style.lineHeight = "11vh";
+                        //     controlText.style.paddingLeft = "5px";
+                        //     controlText.style.paddingRight = "5px";
+                        //     controlText.innerHTML = "Start";
+                        //     controlUI.appendChild(controlText);
 
-                            controlUI.addEventListener("click", () => {
-                                map.setCenter(path[0]);
-                            });
-                        }
+                        //     controlUI.addEventListener("click", () => {
+                        //         map.setCenter(path[0]);
+                        //     });
+                        // }
 
 
 
@@ -363,8 +363,43 @@
         // google.load("visualization", "1", {
         //     packages: ["columnchart"]
         // });
-    </script>
+    </script> -->
+    <script>
+        let map;
+        // define global array to store markers added
+        let markersArray = [];
 
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: -34.397,
+                    lng: 150.644
+                },
+                zoom: 8
+            });
+        }
+
+        map.addListener('click', function (e) {
+            console.log(e);
+            addMarker(e.latLng);
+        });
+
+      
+        // define function to add marker at given lat & lng
+        function addMarker(latLng) {
+            let marker = new google.maps.Marker({
+                map: map,
+                position: latLng,
+                draggable: true
+            });
+
+            //store the marker object drawn on map in global array
+            markersArray.push(marker);
+        }
+
+       
+
+    </script>
 </body>
 
 </html>
